@@ -1,4 +1,4 @@
-export function RenderTriangle(x1, y1, x2, y2, x3, y3, Border, Fill)
+export function RenderTriangle(Triangle, Border, Fill)
 {
 	const Canvas = document.querySelector("canvas")
 	const Context = Canvas.getContext("2d")
@@ -8,9 +8,9 @@ export function RenderTriangle(x1, y1, x2, y2, x3, y3, Border, Fill)
 
 	Context.beginPath()
 	{
-		Context.moveTo(x1, y1)
-		Context.lineTo(x2, y2)
-		Context.lineTo(x3, y3)
+		Context.moveTo(Triangle.x1, Triangle.y1)
+		Context.lineTo(Triangle.x2, Triangle.y2)
+		Context.lineTo(Triangle.x3, Triangle.y3)
 	}
 	Context.closePath()
 
@@ -18,7 +18,7 @@ export function RenderTriangle(x1, y1, x2, y2, x3, y3, Border, Fill)
 	Context.stroke()
 }
 
-export function RenderTrianglePoints(x1, y1, x2, y2, x3, y3)
+export function RenderTrianglePoints(Triangle)
 {
 	const Canvas = document.querySelector("canvas")
 	const Context = Canvas.getContext("2d")
@@ -26,7 +26,7 @@ export function RenderTrianglePoints(x1, y1, x2, y2, x3, y3)
 	Context.font = "1em sans-serif"
 	Context.fillStyle = "white"
 
-	Context.fillText("Point 1", x1, y1)
-	Context.fillText("Point 2", x2, y2)
-	Context.fillText("Point 3", x3, y3)
+	Context.fillText("Point 1", Triangle.x1, Triangle.y1)
+	Context.fillText("Point 2", Triangle.x2, Triangle.y2)
+	Context.fillText("Point 3", Triangle.x3, Triangle.y3)
 }
