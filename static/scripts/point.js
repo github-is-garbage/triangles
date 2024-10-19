@@ -10,4 +10,17 @@ class Point
 	{
 		return [this.x, this.y]
 	}
+
+	// JavaScript doesn't support overloading :/
+	Add(PointB)
+	{
+		this.x += PointB.x
+		this.y += PointB.y
+	}
+
+	Sub(PointB)
+	{
+		this.x -= PointB.x
+		this.y -= PointB.y
+	}
 }
