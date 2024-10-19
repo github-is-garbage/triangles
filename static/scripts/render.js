@@ -1,10 +1,10 @@
-export function RenderTriangle(Triangle, Border, Fill)
+export function RenderTriangle(Triangle)
 {
 	const Canvas = document.querySelector("canvas")
 	const Context = Canvas.getContext("2d")
 
-	Context.strokeStyle = Border
-	Context.fillStyle = Fill
+	Context.strokeStyle = Triangle.m_strBorderColor
+	Context.fillStyle = Triangle.m_strFillColor
 
 	Context.beginPath()
 	{

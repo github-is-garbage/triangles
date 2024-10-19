@@ -11,4 +11,14 @@ export class Triangle
 		this.x3 = x3
 		this.y3 = y3
 	}
+
+	SetBorderColor(r, g, b, a)
+	{
+		this.m_strBorderColor = `rgba(${r}, ${g}, ${b}, ${a})`
+	}
+
+	SetFillColor(r, g, b, a)
+	{
+		this.m_strFillColor = `rgba(${r}, ${g}, ${b}, ${a})`
+	}
 }
