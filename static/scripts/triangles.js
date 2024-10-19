@@ -9,8 +9,17 @@ window.addEventListener("load", () =>
 	TestTri.SetBorderColor(0, 255, 0, 0.5)
 	TestTri.SetFillColor(0, 0, 255, 0.25)
 
-	TestTri.RotatePoints(45)
+	function RotateTestTri()
+	{
+		Context.clearRect(0, 0, Canvas.width, Canvas.height)
 
-	TestTri.RenderToContext(Context)
-	TestTri.RenderPointsToContext(Context)
+		TestTri.RotatePoints(1)
+
+		TestTri.RenderToContext(Context)
+		TestTri.RenderPointsToContext(Context)
+
+		requestAnimationFrame(RotateTestTri)
+	}
+
+	RotateTestTri()
 })
