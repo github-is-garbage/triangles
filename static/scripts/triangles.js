@@ -1,6 +1,6 @@
 import { Triangle } from "./triangle.js"
 
-var IdealFrameTime = 1000 / 60 // 60 fps
+const IdealFrameTime = 1000 / 60 // 60 fps
 var LastFrameTime = null
 
 const Triangles = []
