@@ -58,4 +58,31 @@ export class Triangle
 
 		this.AssignPoints(x1, y1, x2, y2, x3, y3)
 	}
+
+	RenderToContext(Context)
+	{
+		Context.strokeStyle = this.m_strBorderColor
+		Context.fillStyle = this.m_strFillColor
+
+		Context.beginPath()
+		{
+			Context.moveTo(this.x1, this.y1)
+			Context.lineTo(this.x2, this.y2)
+			Context.lineTo(this.x3, this.y3)
+		}
+		Context.closePath()
+
+		Context.fill()
+		Context.stroke()
+	}
+
+	RenderPointsToContext(Context)
+	{
+		Context.font = "1em sans-serif"
+		Context.fillStyle = "white"
+
+		Context.fillText("Point 1", this.x1, this.y1)
+		Context.fillText("Point 2", this.x2, this.y2)
+		Context.fillText("Point 3", this.x3, this.y3)
+	}
 }
