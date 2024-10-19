@@ -5,14 +5,14 @@ export class Triangle
 		this.AssignPoints(x1, y1, x2, y2, x3, y3)
 	}
 
-	SetBorderColor(r, g, b, a)
+	SetBorderColor(BorderColor)
 	{
-		this.m_strBorderColor = `rgba(${r}, ${g}, ${b}, ${a})`
+		this.m_BorderColor = new Color(...BorderColor.Unpack())
 	}
 
-	SetFillColor(r, g, b, a)
+	SetFillColor(FillColor)
 	{
-		this.m_strFillColor = `rgba(${r}, ${g}, ${b}, ${a})`
+		this.m_FillColor = new Color(...FillColor.Unpack())
 	}
 
 	AssignPoints(x1, y1, x2, y2, x3, y3)
@@ -61,8 +61,8 @@ export class Triangle
 
 	RenderToContext(Context)
 	{
-		Context.strokeStyle = this.m_strBorderColor
-		Context.fillStyle = this.m_strFillColor
+		Context.strokeStyle = this.m_BorderColor.ToString()
+		Context.fillStyle = this.m_FillColor.ToString()
 
 		Context.beginPath()
 		{
