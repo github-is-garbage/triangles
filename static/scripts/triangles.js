@@ -59,8 +59,25 @@ window.addEventListener("load", () =>
 		CreateTestTri(PointA, PointB, PointC, BorderColor, FillColor)
 	}
 
-	CreateTestTri(new Point(150, 100), new Point(200, 175), new Point(100, 175), new Color(0, 255, 0, 0.5), new Color(0, 0, 255, 0.25))
-	CreateTriCentered(new Point(256, 256), new Point(0, 20), new Point(20, -20), new Point(-20, -20), new Color(255, 0, 0, 0.5), new Color(255, 255, 0, 0.25))
+	CreateTestTri(
+		new Point(150, 100),
+		new Point(200, 175),
+		new Point(100, 175),
+
+		new Color(0, 255, 0, 0.5),
+		new Color(0, 0, 255, 0.25)
+	)
+
+	CreateTriCentered(
+		new Point(256, 256),
+
+		new Point(0, 20),
+		new Point(20, -20),
+		new Point(-20, -20),
+
+		new Color(255, 0, 0, 0.5),
+		new Color(255, 255, 0, 0.25)
+	)
 
 	AnimateFrame()
 })
