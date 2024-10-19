@@ -7,5 +7,5 @@ window.addEventListener("load", () =>
 	Canvas.width = 1000
 	Canvas.height = 1000
 
-	RenderTriangle(20, 20, 200, 100, 50, 500)
+	RenderTriangle(20, 20, 200, 100, 50, 500, "blue", "red")
 })
