@@ -41,11 +41,16 @@ function AnimateFrame()
 
 window.addEventListener("load", () =>
 {
-	const TestTri = new Triangle(150, 100, 200, 175, 100, 175)
-	TestTri.SetBorderColor(new Color(0, 255, 0, 0.5))
-	TestTri.SetFillColor(new Color(0, 0, 255, 0.25))
+	function CreateTestTri(PointA, PointB, PointC, BorderColor, FillColor)
+	{
+		const TestTri = new Triangle(PointA, PointB, PointC)
+		TestTri.SetBorderColor(BorderColor)
+		TestTri.SetFillColor(FillColor)
 
-	Triangles.push(TestTri)
+		Triangles.push(TestTri)
+	}
+
+	CreateTestTri(new Point(150, 100), new Point(200, 175), new Point(100, 175), new Color(0, 255, 0, 0.5), new Color(0, 0, 255, 0.25))
 
 	AnimateFrame()
 })

@@ -1,8 +1,10 @@
 export class Triangle
 {
-	constructor(x1, y1, x2, y2, x3, y3)
+	constructor(PointA, PointB, PointC)
 	{
-		this.AssignPoints(x1, y1, x2, y2, x3, y3)
+		this.PointA = new Point(...PointA.Unpack())
+		this.PointB = new Point(...PointB.Unpack())
+		this.PointC = new Point(...PointC.Unpack())
 	}
 
 	SetBorderColor(BorderColor)
@@ -15,48 +17,34 @@ export class Triangle
 		this.m_FillColor = new Color(...FillColor.Unpack())
 	}
 
-	AssignPoints(x1, y1, x2, y2, x3, y3)
-	{
-		this.x1 = x1
-		this.y1 = y1
-
-		this.x2 = x2
-		this.y2 = y2
-
-		this.x3 = x3
-		this.y3 = y3
-	}
-
 	GetCenter()
 	{
-		const CenterX = (this.x1 + this.x2 + this.x3) / 3
-		const CenterY = (this.y1 + this.y2 + this.y3) / 3
+		const CenterX = (this.PointA.x + this.PointB.x + this.PointC.x) / 3
+		const CenterY = (this.PointA.y + this.PointB.y + this.PointC.y) / 3
 
-		return [CenterX, CenterY]
+		return new Point(CenterX, CenterY)
+	}
+
+	RotatePoint(Point, CenterPoint, Radians)
+	{
+		const TranslatedX = Point.x - CenterPoint.x
+		const TranslatedY = Point.y - CenterPoint.y
+
+		const RotatedX = TranslatedX * Math.cos(Radians) - TranslatedY * Math.sin(Radians)
+		const RotatedY = TranslatedX * Math.sin(Radians) + TranslatedY * Math.cos(Radians)
+
+		Point.x = RotatedX + CenterPoint.x
+		Point.y = RotatedY + CenterPoint.y
 	}
 
 	RotatePoints(Degrees)
 	{
 		const Radians = Degrees * (Math.PI / 180)
+		const CenterPoint = this.GetCenter()
 
-		const [CenterX, CenterY] = this.GetCenter()
-
-		const Rotate = (X, Y) =>
-		{
-			const TranslatedX = X - CenterX
-			const TranslatedY = Y - CenterY
-
-			const RotatedX = TranslatedX * Math.cos(Radians) - TranslatedY * Math.sin(Radians)
-			const RotatedY = TranslatedX * Math.sin(Radians) + TranslatedY * Math.cos(Radians)
-
-			return [RotatedX + CenterX, RotatedY + CenterY]
-		}
-
-		const [x1, y1] = Rotate(this.x1, this.y1)
-		const [x2, y2] = Rotate(this.x2, this.y2)
-		const [x3, y3] = Rotate(this.x3, this.y3)
-
-		this.AssignPoints(x1, y1, x2, y2, x3, y3)
+		this.RotatePoint(this.PointA, CenterPoint, Radians)
+		this.RotatePoint(this.PointB, CenterPoint, Radians)
+		this.RotatePoint(this.PointC, CenterPoint, Radians)
 	}
 
 	RenderToContext(Context)
@@ -66,9 +54,9 @@ export class Triangle
 
 		Context.beginPath()
 		{
-			Context.moveTo(this.x1, this.y1)
-			Context.lineTo(this.x2, this.y2)
-			Context.lineTo(this.x3, this.y3)
+			Context.moveTo(...this.PointA.Unpack())
+			Context.lineTo(...this.PointB.Unpack())
+			Context.lineTo(...this.PointC.Unpack())
 		}
 		Context.closePath()
 
@@ -81,8 +69,8 @@ export class Triangle
 		Context.font = "1em sans-serif"
 		Context.fillStyle = "white"
 
-		Context.fillText("Point 1", this.x1, this.y1)
-		Context.fillText("Point 2", this.x2, this.y2)
-		Context.fillText("Point 3", this.x3, this.y3)
+		Context.fillText("Point 1", ...this.PointA.Unpack())
+		Context.fillText("Point 2", ...this.PointB.Unpack())
+		Context.fillText("Point 3", ...this.PointC.Unpack())
 	}
 }
