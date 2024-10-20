@@ -64,13 +64,23 @@ export class Triangle
 		Context.stroke()
 	}
 
+	RenderPoint(Context, Point, FillColor)
+	{
+		Context.fillStyle = FillColor.ToString()
+
+		Context.beginPath()
+		{
+			Context.arc(Point.x, Point.y, 3, 0, Math.PI * 2, false)
+		}
+		Context.closePath()
+
+		Context.fill()
+	}
+
 	RenderPointsToContext(Context)
 	{
-		Context.font = "1em sans-serif"
-		Context.fillStyle = "white"
-
-		Context.fillText("Point 1", ...this.PointA.Unpack())
-		Context.fillText("Point 2", ...this.PointB.Unpack())
-		Context.fillText("Point 3", ...this.PointC.Unpack())
+		this.RenderPoint(Context, this.PointA, new Color(255, 0, 0))
+		this.RenderPoint(Context, this.PointB, new Color(0, 255, 0))
+		this.RenderPoint(Context, this.PointC, new Color(0, 0, 255))
 	}
 }
