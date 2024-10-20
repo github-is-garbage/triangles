@@ -6,12 +6,12 @@ function UpdateCanvasSize()
 	const Canvas = document.querySelector("canvas")
 	if (!Canvas) return
 
-	StopAnimation()
+	StopAnimation() // When the size changes, the transform gets reset
 
 	Canvas.width = document.body.clientWidth
 	Canvas.height = document.body.clientHeight
 
-	StartAnimation()
+	StartAnimation() // So we must restart with new size
 }
 
 window.addEventListener("load", () =>
