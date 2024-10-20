@@ -1,13 +1,17 @@
 import { Triangle, CreateBasicTri, CreateTriCentered } from "./triangle.js"
-import { Triangles, AnimateFrame } from "./render.js"
+import { Triangles, StartAnimation, StopAnimation } from "./render.js"
 
 function UpdateCanvasSize()
 {
 	const Canvas = document.querySelector("canvas")
 	if (!Canvas) return
 
+	StopAnimation()
+
 	Canvas.width = document.body.clientWidth
 	Canvas.height = document.body.clientHeight
+
+	StartAnimation()
 }
 
 window.addEventListener("load", () =>
@@ -33,7 +37,7 @@ window.addEventListener("load", () =>
 	))
 
 	UpdateCanvasSize()
-	AnimateFrame()
+	StartAnimation()
 })
 
 window.addEventListener("resize", UpdateCanvasSize)

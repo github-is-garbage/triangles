@@ -1,5 +1,10 @@
-const IdealFrameTime = 1000 / 60 // 60 fps
+export const IdealFrameTime = 1000 / 60 // 60 fps
 var LastFrameTime = null
+
+var RenderCanvas = null
+var RenderContext = null
+
+var NextFrameNumber = null
 
 export const Triangles = []
 
@@ -9,7 +14,7 @@ export const Settings = {
 	"Fills": true
 }
 
-function RenderGrid(RenderCanvas, RenderContext, Spacing)
+function RenderGrid(Spacing)
 {
 	RenderContext.strokeStyle = "gray"
 
@@ -32,7 +37,7 @@ function RenderGrid(RenderCanvas, RenderContext, Spacing)
 	RenderContext.stroke()
 }
 
-function RenderTriangles(RenderContext, DeltaFrameTime)
+function RenderTriangles(DeltaFrameTime)
 {
 	for (const Tri of Triangles)
 	{
@@ -42,13 +47,9 @@ function RenderTriangles(RenderContext, DeltaFrameTime)
 	}
 }
 
-export function AnimateFrame()
+function AnimateFrame()
 {
-	const Canvas = document.querySelector("canvas")
-	if (!Canvas) return
-
-	const RenderContext = Canvas.getContext("2d")
-	RenderContext.clearRect(0, 0, Canvas.width, Canvas.height)
+	RenderContext.clearRect(0, 0, RenderCanvas.width, RenderCanvas.height)
 
 	// Try to get 60 fps
 	if (!LastFrameTime)
@@ -59,9 +60,28 @@ export function AnimateFrame()
 
 	LastFrameTime = CurrentFrameTime
 
-	RenderGrid(Canvas, RenderContext, 10)
-	RenderTriangles(RenderContext, DeltaFrameTime)
+	RenderGrid(10)
+	RenderTriangles(DeltaFrameTime)
 
 	// Garrr
-	requestAnimationFrame(AnimateFrame)
+	NextFrameNumber = requestAnimationFrame(AnimateFrame)
+}
+
+export function StartAnimation()
+{
+	RenderCanvas = document.querySelector("canvas")
+	if (!RenderCanvas) return console.error("Canvas not found")
+
+	RenderContext = RenderCanvas.getContext("2d")
+
+	RenderContext.setTransform(2, 0, 0, 2, 0, 0)
+	RenderContext.clearRect(0, 0, RenderCanvas.width, RenderCanvas.height)
+
+	AnimateFrame()
+}
+
+export function StopAnimation()
+{
+	if (NextFrameNumber)
+		cancelAnimationFrame(NextFrameNumber)
 }
