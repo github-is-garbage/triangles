@@ -84,3 +84,21 @@ export class Triangle
 		this.RenderPoint(Context, this.PointC, new Color(0, 0, 255))
 	}
 }
+
+export function CreateBasicTri(PointA, PointB, PointC, BorderColor, FillColor)
+{
+	const Tri = new Triangle(PointA, PointB, PointC)
+	Tri.SetBorderColor(BorderColor)
+	Tri.SetFillColor(FillColor)
+
+	return Tri
+}
+
+export function CreateTriCentered(CenterPoint, PointA, PointB, PointC, BorderColor, FillColor)
+{
+	PointA.Add(CenterPoint)
+	PointB.Add(CenterPoint)
+	PointC.Add(CenterPoint)
+
+	return CreateBasicTri(PointA, PointB, PointC, BorderColor, FillColor)
+}
