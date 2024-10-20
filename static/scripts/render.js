@@ -74,7 +74,7 @@ export function StartAnimation()
 
 	RenderContext = RenderCanvas.getContext("2d")
 
-	RenderContext.setTransform(2, 0, 0, 2, 0, 0)
+	RenderContext.setTransform(1.5, 0, 0, 1.5, 0, 0)
 	RenderContext.clearRect(0, 0, RenderCanvas.width, RenderCanvas.height)
 
 	AnimateFrame()
