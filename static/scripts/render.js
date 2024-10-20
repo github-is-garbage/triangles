@@ -9,6 +9,29 @@ export const Settings = {
 	"Fills": true
 }
 
+function RenderGrid(RenderCanvas, RenderContext, Spacing)
+{
+	RenderContext.strokeStyle = "gray"
+
+	RenderContext.beginPath()
+	{
+		for (let i = 0; i < RenderCanvas.width; i += Spacing)
+		{
+			RenderContext.moveTo(i, 0)
+			RenderContext.lineTo(i, RenderCanvas.height)
+		}
+
+		for (let i = 0; i < RenderCanvas.height; i += Spacing)
+		{
+			RenderContext.moveTo(0, i)
+			RenderContext.lineTo(RenderCanvas.width, i)
+		}
+	}
+	RenderContext.closePath()
+
+	RenderContext.stroke()
+}
+
 function RenderTriangles(RenderContext, DeltaFrameTime)
 {
 	for (const Tri of Triangles)
@@ -36,6 +59,7 @@ export function AnimateFrame()
 
 	LastFrameTime = CurrentFrameTime
 
+	RenderGrid(Canvas, RenderContext, 10)
 	RenderTriangles(RenderContext, DeltaFrameTime)
 
 	// Garrr
