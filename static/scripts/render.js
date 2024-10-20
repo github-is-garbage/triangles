@@ -3,14 +3,19 @@ var LastFrameTime = null
 
 export const Triangles = []
 
+export const Settings = {
+	"Points": true,
+	"Borders": true,
+	"Fills": true
+}
+
 function RenderTriangles(RenderContext, DeltaFrameTime)
 {
 	for (const Tri of Triangles)
 	{
 		Tri.RotatePoints(1 * DeltaFrameTime)
 
-		Tri.RenderToContext(RenderContext)
-		Tri.RenderPointsToContext(RenderContext)
+		Tri.RenderToContext(RenderContext, Settings.Borders, Settings.Fills, Settings.Points)
 	}
 }
 

@@ -47,8 +47,10 @@ export class Triangle
 		this.RotatePoint(this.PointC, CenterPoint, Radians)
 	}
 
-	RenderToContext(Context)
+	RenderToContext(Context, RenderBorder = true, RenderFill = true, RenderPoints = false)
 	{
+		if (!RenderBorder && !RenderFill) return
+
 		Context.strokeStyle = this.m_BorderColor.ToString()
 		Context.fillStyle = this.m_FillColor.ToString()
 
@@ -60,8 +62,11 @@ export class Triangle
 		}
 		Context.closePath()
 
-		Context.fill()
-		Context.stroke()
+		if (RenderFill) Context.fill()
+		if (RenderBorder) Context.stroke()
+
+		if (RenderPoints)
+			this.RenderPointsToContext(Context)
 	}
 
 	RenderPoint(Context, Point, FillColor)
