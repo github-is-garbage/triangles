@@ -60,7 +60,7 @@ window.addEventListener("load", () =>
 	}
 
 	CreateTestTri(
-		new Point(150, 100),
+		new Point(180, 125),
 		new Point(200, 175),
 		new Point(100, 175),
 
