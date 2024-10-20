@@ -17,3 +17,8 @@ html, body
 
 	background-color: black;
 }
+
+canvas
+{
+	display: block;
+}

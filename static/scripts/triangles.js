@@ -39,6 +39,15 @@ function AnimateFrame()
 	requestAnimationFrame(AnimateFrame)
 }
 
+function UpdateCanvasSize()
+{
+	const Canvas = document.querySelector("canvas")
+	if (!Canvas) return
+
+	Canvas.width = document.body.clientWidth
+	Canvas.height = document.body.clientHeight
+}
+
 window.addEventListener("load", () =>
 {
 	function CreateTestTri(PointA, PointB, PointC, BorderColor, FillColor)
@@ -79,5 +88,8 @@ window.addEventListener("load", () =>
 		new Color(255, 255, 0, 0.25)
 	)
 
+	UpdateCanvasSize()
 	AnimateFrame()
 })
+
+window.addEventListener("resize", UpdateCanvasSize)
